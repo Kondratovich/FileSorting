@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FileSorting": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\devIncubator\\FileSorting\\FileSorting\\FileData\\in.txt D:\\devIncubator\\FileSorting\\FileSorting\\FileData\\out.txt "
+    }
+  }
+}

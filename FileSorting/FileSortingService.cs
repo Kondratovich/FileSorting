@@ -12,7 +12,7 @@ namespace FileSorting
         {
             this.inFilePath = inFilePath;
             this.outFilePath = outFilePath;
-            loadDataFromFile(inFilePath);
+            loadDataFromFile();
         }
 
         public void PrintMatrix()
@@ -52,22 +52,30 @@ namespace FileSorting
 
         public void SaveSortedDataToFile()
         {
-            using (StreamWriter writer = new StreamWriter(outFilePath))
+            try
             {
-                for (int i = 0; i < matrix.GetLength(0); i++)
+                using (StreamWriter writer = new StreamWriter(outFilePath))
                 {
-                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    for (int i = 0; i < matrix.GetLength(0); i++)
                     {
-                        writer.WriteAsync($"{matrix[i, j]}\t");
+                        for (int j = 0; j < matrix.GetLength(1); j++)
+                        {
+                            writer.WriteAsync($"{matrix[i, j]}\t");
+                        }
+                        writer.WriteLine();
                     }
-                    writer.WriteLine();
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
-        private void loadDataFromFile(string inFilePath)
+        private void loadDataFromFile()
         {
-            var dimensionSizes = getDimensionSizes(inFilePath);
+
+            var dimensionSizes = getDimensionSizes();
             matrix = new string[dimensionSizes.linesCount, dimensionSizes.columnsCount];
 
             for (int i = 0; i < dimensionSizes.linesCount; i++)
@@ -94,15 +102,18 @@ namespace FileSorting
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex.Message);
             }
+
         }
 
-        private (int linesCount, int columnsCount) getDimensionSizes(string inFilePath)
+        private (int linesCount, int columnsCount) getDimensionSizes()
         {
             var dimensionsSize = new List<int>();
+            int linesCount = 0;
+            int columnsCount = 0;
 
             try
             {
@@ -115,14 +126,14 @@ namespace FileSorting
                         dimensionsSize.Add(columnsNumber);
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
 
-            var linesCount = dimensionsSize.Count();
-            var columnsCount = dimensionsSize.Max();
+                linesCount = dimensionsSize.Count();
+                columnsCount = dimensionsSize.Max();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             return (linesCount, columnsCount);
         }

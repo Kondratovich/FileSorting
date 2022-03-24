@@ -2,10 +2,9 @@
 {
     class Program
     {
-        private static readonly string CsvFilesPath = @$"{Directory.GetCurrentDirectory()}\FileData\";
         public static void Main(string[] args)
         {
-            var fileSortingService = new FileSortingService($"{CsvFilesPath}in.txt", $"{CsvFilesPath}out.txt");
+            var fileSortingService = new FileSortingService(args[0], args[1]);
             fileSortingService.PrintMatrix();
             fileSortingService.Sort();
             Console.WriteLine("--------------------------------");

@@ -1,1 +1,14 @@
-﻿
+-22	-3	4		
+-22	11	abc		
+-22	1234234	asdfasf	asdgas	
+-2.2	2	3	4	
+-1.1				
+2.2	12345q	69	-afg	
+2.2	12345q	69	-asdf	
+2.2	12345q	69	-asdffsavxcb	
+2.2	12345q	69	f	
+				
+				
+qqqq	-1.1			
+qqqq	0.1			
+qqqq	q1.1			
